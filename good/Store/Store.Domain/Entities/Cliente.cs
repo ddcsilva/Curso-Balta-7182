@@ -1,6 +1,6 @@
 ﻿namespace Store.Domain.Entities;
 
-public class Cliente
+public class Cliente : Base
 {
     public Cliente(string nome, string email)
     {
