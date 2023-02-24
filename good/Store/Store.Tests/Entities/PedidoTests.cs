@@ -1,17 +1,20 @@
 ﻿using Store.Domain.Entities;
+using Store.Domain.Enums;
 
 namespace Store.Tests.Entities;
 
 [TestClass]
 public class PedidoTests
 {
+    private readonly Cliente _cliente = new Cliente("Danilo Silva", "danilo.silva@msn.com");
+    private readonly Produto _produto = new Produto("Produto 1", 10, true);
+    private readonly Desconto _desconto = new Desconto(10, DateTime.Now.AddDays(5));
+
     [TestMethod]
     [TestCategory("Domain")]
     public void Dado_um_novo_pedido_valido_ele_deve_gerar_um_numero_com_8_caracteres()
     {
-        var cliente = new Cliente("Danilo Silva", "danilo.silva@msn.com");
-        var desconto = new Desconto(0.8M, DateTime.Now.AddDays(3));
-        var pedido = new Pedido(cliente, 0.5M, desconto);
+        var pedido = new Pedido(_cliente, 0.5M, _desconto);
 
         Assert.AreEqual(8, pedido.Numero.Length);
     }
@@ -20,7 +23,9 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_novo_pedido_seu_status_deve_ser_aguardando_pagamento()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 0.5M, _desconto);
+
+        Assert.AreEqual(StatusPedidoEnum.AguardandoPagamento, pedido.Status);
     }
 
     [TestMethod]
