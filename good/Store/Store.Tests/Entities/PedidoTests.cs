@@ -74,7 +74,10 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_novo_pedido_valido_seu_total_deve_ser_50()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 10, _desconto);
+        pedido.AdicionarItem(_produto, 5);
+
+        Assert.AreEqual(50, pedido.Total());
     }
 
     [TestMethod]
