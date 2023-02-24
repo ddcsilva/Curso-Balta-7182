@@ -125,6 +125,8 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_pedido_sem_cliente_o_mesmo_deve_ser_invalido()
     {
-        Assert.Fail();
+        var pedido = new Pedido(null, 10, _desconto);
+
+        Assert.AreEqual(pedido.Valid, false);
     }
 }
