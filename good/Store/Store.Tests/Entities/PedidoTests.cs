@@ -33,6 +33,7 @@ public class PedidoTests
     public void Dado_um_pagamento_do_pedido_seu_status_deve_ser_aguardando_entrega()
     {
         var pedido = new Pedido(_cliente, 0.5M, _desconto);
+        // TODO: Verificar a não adição do item
         pedido.AdicionarItem(_produto, 1);
         pedido.Pagar(10);
 
@@ -43,7 +44,10 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_pedido_cancelado_seu_status_deve_ser_cancelado()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 0.5M, _desconto);
+        pedido.Cancelar();
+
+        Assert.AreEqual(StatusPedidoEnum.Cancelado, pedido.Status);
     }
 
     [TestMethod]
