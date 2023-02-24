@@ -84,7 +84,11 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_desconto_expirado_o_valor_do_pedido_deve_ser_60()
     {
-        Assert.Fail();
+        var descontoExpirado = new Desconto(10, DateTime.Now.AddDays(-5));
+        var pedido = new Pedido(_cliente, 10, descontoExpirado);
+        pedido.AdicionarItem(_produto, 5);
+
+        Assert.AreEqual(60, pedido.Total());
     }
 
     [TestMethod]
