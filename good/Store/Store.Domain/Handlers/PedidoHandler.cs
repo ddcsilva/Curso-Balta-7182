@@ -4,6 +4,7 @@ using Store.Domain.Commands.Interfaces;
 using Store.Domain.Entities;
 using Store.Domain.Handlers.Interfaces;
 using Store.Domain.Repositories;
+using Store.Domain.Utils;
 
 namespace Store.Domain.Handlers
 {
@@ -48,7 +49,7 @@ namespace Store.Domain.Handlers
             var desconto = _descontoRepository.Get(command.codigoPromocional);
 
             // 4. Gera o pedido
-            var produtos = _produtoRepository.Get(ExtrairGuids.Extrair(command.Items)).ToList();
+            var produtos = _produtoRepository.Get(ExtracaoGuids.Extrair(command.Items)).ToList();
             var pedido = new Pedido(cliente, taxaEntrega, desconto);
             foreach (var item in command.Items)
             {
