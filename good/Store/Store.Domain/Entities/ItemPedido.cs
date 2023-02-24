@@ -24,6 +24,6 @@ public class ItemPedido : Base
 
     public decimal Total()
     {
-        return Preco + Quantidade;
+        return Preco * Quantidade;
     }
 }
