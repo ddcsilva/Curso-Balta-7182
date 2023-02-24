@@ -64,7 +64,10 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_novo_item_com_quantidade_zero_ou_menor_o_mesmo_nao_deve_ser_adicionado()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 0.5M, _desconto);
+        pedido.AdicionarItem(_produto, 0);
+
+        Assert.AreEqual(0, pedido.Items.Count);
     }
 
     [TestMethod]
