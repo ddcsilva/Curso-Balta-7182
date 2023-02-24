@@ -95,7 +95,10 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_desconto_invalido_o_valor_do_pedido_deve_ser_60()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 10, null);
+        pedido.AdicionarItem(_produto, 5);
+
+        Assert.AreEqual(60, pedido.Total());
     }
 
     [TestMethod]
