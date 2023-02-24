@@ -1,4 +1,5 @@
-﻿using Store.Domain.Enums;
+﻿using Flunt.Validations;
+using Store.Domain.Enums;
 
 namespace Store.Domain.Entities;
 
@@ -6,6 +7,12 @@ public class Pedido : Base
 {
     public Pedido(Cliente cliente, decimal taxaEntrega, Desconto desconto)
     {
+        AddNotifications(
+            new Contract()
+                .Requires()
+                .IsNotNull(cliente, "Cliente", "Cliente Inválido")
+        );
+
         Cliente = cliente;
         Data = DateTime.Now;
         Numero = Guid.NewGuid().ToString().Substring(0, 8);
@@ -26,7 +33,11 @@ public class Pedido : Base
     public void AdicionarItem(Produto produto, int quantidade)
     {
         var item = new ItemPedido(produto, quantidade);
-        Items.Add(item);
+
+        if (item.Valid)
+        {
+            Items.Add(item);
+        }
     }
 
     public decimal Total()
@@ -46,7 +57,9 @@ public class Pedido : Base
     public void Pagar(decimal quantia)
     {
         if (quantia == Total())
+        {
             Status = StatusPedidoEnum.AguardandoEntrega;
+        }
     }
 
     public void Cancelar()
