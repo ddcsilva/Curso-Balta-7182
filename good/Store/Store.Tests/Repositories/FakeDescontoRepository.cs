@@ -3,7 +3,7 @@ using Store.Domain.Repositories;
 
 namespace Store.Tests.Repositories
 {
-    public class FakeDiscountRepository : IDescontoRepository
+    public class FakeDescontoRepository : IDescontoRepository
     {
         public Desconto Get(string code)
         {

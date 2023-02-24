@@ -3,7 +3,7 @@ using Store.Domain.Repositories;
 
 namespace Store.Tests.Repositories
 {
-    public class FakeProductRepository : IProdutoRepository
+    public class FakeProdutoRepository : IProdutoRepository
     {
         public IEnumerable<Produto> Get(IEnumerable<Guid> ids)
         {
