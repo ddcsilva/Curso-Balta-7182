@@ -1,4 +1,6 @@
-﻿namespace Store.Tests.Entities;
+﻿using Store.Domain.Entities;
+
+namespace Store.Tests.Entities;
 
 [TestClass]
 public class PedidoTests
@@ -7,7 +9,11 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_novo_pedido_valido_ele_deve_gerar_um_numero_com_8_caracteres()
     {
-        Assert.Fail();
+        var cliente = new Cliente("Danilo Silva", "danilo.silva@msn.com");
+        var desconto = new Desconto(0.8M, DateTime.Now.AddDays(3));
+        var pedido = new Pedido(cliente, 0.5M, desconto);
+
+        Assert.AreEqual(8, pedido.Numero.Length);
     }
 
     [TestMethod]
