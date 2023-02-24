@@ -115,7 +115,10 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_uma_taxa_de_entrega_de_10_o_valor_do_pedido_deve_ser_60()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 10, _desconto);
+        pedido.AdicionarItem(_produto, 6);
+
+        Assert.AreEqual(60, pedido.Total());
     }
 
     [TestMethod]
