@@ -32,7 +32,11 @@ public class PedidoTests
     [TestCategory("Domain")]
     public void Dado_um_pagamento_do_pedido_seu_status_deve_ser_aguardando_entrega()
     {
-        Assert.Fail();
+        var pedido = new Pedido(_cliente, 0.5M, _desconto);
+        pedido.AdicionarItem(_produto, 1);
+        pedido.Pagar(10);
+
+        Assert.AreEqual(StatusPedidoEnum.AguardandoPagamento, pedido.Status);
     }
 
     [TestMethod]
